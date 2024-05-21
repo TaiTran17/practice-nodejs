@@ -1,4 +1,4 @@
-const createUser = async (req, res) => {
+export const createUser = async (req, res) => {
   const newUser = req.body;
 
   // Check if username already exists
@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
   res.status(201).json({ message: "User created", user: newUser });
 };
 
-const updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
   const { username } = req.params;
   const updatedData = req.body;
 
@@ -33,7 +33,7 @@ const updateUser = async (req, res) => {
   res.status(200).json({ message: "User updated", user: updatedUser });
 };
 
-const deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
   const { username } = req.params;
 
   const userIndex = users.findIndex((user) => user.username === username);
@@ -46,7 +46,7 @@ const deleteUser = async (req, res) => {
   res.status(200).json({ message: "User deleted" });
 };
 
-const searchUser = async (req, res) => {
+export const searchUser = async (req, res) => {
   const { username, fullname, role, activeYn } = req.query;
 
   let filteredUsers = users;
@@ -69,11 +69,4 @@ const searchUser = async (req, res) => {
   }
 
   res.status(200).json(filteredUsers);
-};
-
-module.exports = {
-  createUser,
-  updateUser,
-  deleteUser,
-  searchUser,
 };
